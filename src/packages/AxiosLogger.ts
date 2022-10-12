@@ -42,12 +42,13 @@ export class AxiosLogger implements IAxiosLogger {
 
   private logRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const pickData: string[] = ['headers', 'method', 'url', 'data', 'params'];
-    const requestId: string = uuid();
+    const requestId: string = (config.params?.requestId || config.headers.requestId || uuid()) as string;
 
     const baseData = {
       requestId,
       type: 'Request',
     };
+
     const getLog = R.pipe(
       R.clone,
       R.pick(pickData),

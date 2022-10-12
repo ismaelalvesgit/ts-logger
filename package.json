@@ -1,5 +1,5 @@
 {
-  "name": "@somosphi/logger",
+  "name": "@ismaelalves/logger",
   "version": "1.6.0",
   "description": "A package to include request/response logging inside services",
   "main": "lib/index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/somosphi/js-logger"
+    "url": "https://github.com/ismaelalvesgit/ts-logger"
   },
-  "author": "Phi Pagamentos",
+  "author": "Ismael Alves",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/somosphi/js-logger/issues"
+    "url": "https://github.com/ismaelalvesgit/ts-logger/issues"
   },
-  "homepage": "https://github.com/somosphi/js-logger",
+  "homepage": "https://github.com/ismaelalvesgit/ts-logger",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/bunyan": "^1.8.6",

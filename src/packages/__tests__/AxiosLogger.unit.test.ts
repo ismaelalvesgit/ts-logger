@@ -98,6 +98,94 @@ describe('Axios Log', () => {
       }));
     });
 
+    it('logs with the message as an empty string and change requestId in query string', async () => {
+      const spy = jest.spyOn(require('bunyan').prototype, 'debug');
+
+      nock('http://localhost:3000')
+        .post('/test?requestId=requestId')
+        .reply(200, { some: 'data' });
+
+      const instance = axios.create({
+        baseURL: 'http://localhost:3000',
+      });
+      axiosLogger.attachInterceptor(instance);
+
+      const body = {
+        data: 'some',
+      };
+      await instance.post('http://localhost:3000/test', body, {
+        params: {
+          requestId: 'requestId',
+        },
+      });
+
+      expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledTimes(2);
+
+      const fstCall = spy.mock.calls[0][0];
+      expect(fstCall).toMatchSchema(joi.object({
+        type: joi.string().valid('Request').required(),
+        headers: joi.object().required(),
+        method: joi.string().valid('post').required(),
+        data: joi.object().valid(body).required(),
+        url: joi.string().valid('http://localhost:3000/test').required(),
+        requestId: joi.string().valid('requestId').required(),
+      }));
+
+      const sndCall = spy.mock.calls[1][0];
+      expect(sndCall).toMatchSchema(joi.object({
+        type: joi.string().valid('Response').required(),
+        headers: joi.object().required(),
+        status: joi.number().valid(200).required(),
+        data: joi.object().valid({ some: 'data' }).required(),
+        requestId: joi.string().valid('requestId').required(),
+      }));
+    });
+
+    it('logs with the message as an empty string and change requestId in header', async () => {
+      const spy = jest.spyOn(require('bunyan').prototype, 'debug');
+
+      nock('http://localhost:3000')
+        .post('/test')
+        .reply(200, { some: 'data' });
+
+      const instance = axios.create({
+        baseURL: 'http://localhost:3000',
+      });
+      axiosLogger.attachInterceptor(instance);
+
+      const body = {
+        data: 'some',
+      };
+      await instance.post('http://localhost:3000/test', body, {
+        headers: {
+          requestId: 'requestId',
+        },
+      });
+
+      expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledTimes(2);
+
+      const fstCall = spy.mock.calls[0][0];
+      expect(fstCall).toMatchSchema(joi.object({
+        type: joi.string().valid('Request').required(),
+        headers: joi.object().required(),
+        method: joi.string().valid('post').required(),
+        data: joi.object().valid(body).required(),
+        url: joi.string().valid('http://localhost:3000/test').required(),
+        requestId: joi.string().valid('requestId').required(),
+      }));
+
+      const sndCall = spy.mock.calls[1][0];
+      expect(sndCall).toMatchSchema(joi.object({
+        type: joi.string().valid('Response').required(),
+        headers: joi.object().required(),
+        status: joi.number().valid(200).required(),
+        data: joi.object().valid({ some: 'data' }).required(),
+        requestId: joi.string().valid('requestId').required(),
+      }));
+    });
+
     it('logs the error response', async () => {
       const debugSpy = jest.spyOn(require('bunyan').prototype, 'debug');
       const errSpy = jest.spyOn(require('bunyan').prototype, 'error');

@@ -35,7 +35,7 @@ export class RequestLogger implements IRequestLogger {
   private log = (data: object) => this.logger.debug(this.redact.map(data));
 
   private logRequest = (data: LogData): object => {
-    const reqId = uuid();
+    const reqId = (data.headers.requestId || uuid()) as string;
     this._cache.set(data.debugId, reqId);
 
     const base = {
