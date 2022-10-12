@@ -103,7 +103,9 @@ describe('Express Logger', () => {
       req.setMethod('POST');
       // @ts-ignore
       req.url = '/v1/suupppp';
-      req.setHeaders('requestId', 'requestId');
+      req.headers = {
+        requestId: 'requestId',
+      };
       eLogger.onSuccess(
         // @ts-ignore
         req,

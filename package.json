@@ -1,6 +1,6 @@
 {
   "name": "@ismaelalves/logger",
-  "version": "1.6.0",
+  "version": "0.1.0",
   "description": "A package to include request/response logging inside services",
   "main": "lib/index.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf lib && tsc",
+    "build": "rimraf lib && tsc",
     "test": "jest \\.test\\.ts",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx"
   },
@@ -41,6 +41,9 @@
     "traverse": "^0.6.6",
     "uuid": "^7.0.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "axios": "^0.x",
     "express": "^4.x",
@@ -53,6 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "acorn": "^7.1.1",
+    "axios": "^0.x",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^7.2.0",
     "eslint-plugin-import": "^2.20.1",
@@ -60,15 +64,15 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.4.0",
+    "express": "^4.x",
     "jest": "^25.1.0",
     "jest-express": "^1.11.3",
     "nock": "^12.0.3",
+    "request": "^2.x",
+    "rimraf": "^3.0.2",
     "sinon": "^9.0.1",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.3.0",
-    "typescript": "^3.6.2",
-    "axios": "^0.x",
-    "express": "^4.x",
-    "request": "^2.x"
+    "typescript": "^3.6.2"
   }
 }

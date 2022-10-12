@@ -51,7 +51,7 @@ export class ExpressLogger implements IExpressLogger {
 
     // eslint-disable-next-line prefer-destructuring
     const end = res.end;
-    const requestId = (req.query?.requestId || req.headers.requestid || uuid()) as string;
+    const requestId = (req.query?.requestId || req.headers.requestId || uuid()) as string;
 
     req.__requestId__ = requestId;
 
