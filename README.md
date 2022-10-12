@@ -1,4 +1,4 @@
-# @Logger
+# @ismaelalves Logger
 This is a package to add logging to request/response packages inside backend services and web applications.
 
 ## Installing
