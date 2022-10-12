@@ -1,9 +1,7 @@
 /* eslint-disable global-require */
-import joi from '@hapi/joi';
+import joi from 'joi';
 import nock from 'nock';
-
 import axios from 'axios';
-
 import { logger } from '../../logger';
 import { AxiosLogger } from '../AxiosLogger';
 import Redact from '../Redact';
@@ -49,12 +47,12 @@ describe('Axios Log', () => {
       expect(instance).toHaveProperty('interceptors.request');
       expect(instance.interceptors.request).toBeDefined();
       expect(JSON.stringify(instance.interceptors.request)).toEqual(JSON.stringify({
-        handlers: [{}],
+        handlers: [{ synchronous: false, runWhen: null }],
       }));
       expect(instance).toHaveProperty('interceptors.response');
       expect(instance.interceptors.response).toBeDefined();
       expect(JSON.stringify(instance.interceptors.response)).toEqual(JSON.stringify({
-        handlers: [{}],
+        handlers: [{ synchronous: false, runWhen: null }],
       }));
     });
 
@@ -221,7 +219,7 @@ describe('Axios Log', () => {
       const errFstCall = errSpy.mock.calls[0][0];
       expect(errFstCall).toMatchSchema(joi.object({
         type: joi.string().valid('Error').required(),
-        stack: joi.string().required(),
+        stack: joi.string(),
         data: joi.object().valid({ some: 'data' }).required(),
         requestId: joi.string().guid({ version: 'uuidv4' }).required(),
       }));

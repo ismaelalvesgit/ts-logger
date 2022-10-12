@@ -42,7 +42,7 @@ export class AxiosLogger implements IAxiosLogger {
 
   private logRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const pickData: string[] = ['headers', 'method', 'url', 'data', 'params'];
-    const requestId: string = (config.params?.requestId || config.headers.requestId || uuid()) as string;
+    const requestId: string = (config.params?.requestId || config.headers?.requestId || uuid()) as string;
 
     const baseData = {
       requestId,

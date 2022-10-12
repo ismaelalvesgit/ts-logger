@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable global-require */
-import joi from '@hapi/joi';
+import joi from 'joi';
 import { Request } from 'jest-express/lib/request';
-
 import { logger } from '../../logger';
 import { ExpressLogger } from '../ExpressLogger';
 import Redact from '../Redact';
-
 
 describe('Express Logger', () => {
   const expressLogger = new ExpressLogger({
