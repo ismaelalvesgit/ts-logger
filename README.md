@@ -1,11 +1,11 @@
-# @somosphi Logger
+# @Logger
 This is a package to add logging to request/response packages inside backend services and web applications.
 
 ## Installing
 Using NPM:
 
 ```sh
-npm install @somosphi/logger
+npm install @ismaelalves/logger
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ The logger configuration (`type LoggerConfig`) has these properties:
 #### Simple Logger
 
 ```javascript
-const { Logger } = require('@somosphi/logger').init({
+const { Logger } = require('@ismaelalves/logger').init({
   PROJECT_NAME: 'project-name',
 });
 
@@ -50,7 +50,7 @@ Logger.info(JSON.stringify({
 
 #### Express Middleware
 ```javascript
-const { ExpressLogger } = require('@somosphi/logger').init({
+const { ExpressLogger } = require('@ismaelalves/logger').init({
   PROJECT_NAME: 'project-name',
 });
 
@@ -60,13 +60,13 @@ app.use(ExpressLogger.onError.bind(ExpressLogger));
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":298,"level":30,"msg":"{\"origin\":\"Express\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"}}","time":"2019-09-10T00:49:04.394Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":298,"level":30,"msg":"{\"origin\":\"Express\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"}}","time":"2019-09-10T00:49:04.394Z","v":0}
 */
 ```
 
 #### Axios Interceptor
 ```javascript
-const { AxiosLogger } = require('@somosphi/logger').init({
+const { AxiosLogger } = require('@ismaelalves/logger').init({
   PROJECT_NAME: 'project-name',
 });
 
@@ -76,13 +76,13 @@ AxiosLogger.attachInterceptor.bind(AxiosLogger)(axiosInstance);
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Axios\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Axios\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
 */
 ```
 
 #### Request Debug
 ```javascript
-const { RequestLogger } = require('@somosphi/logger').init({
+const { RequestLogger } = require('@ismaelalves/logger').init({
   PROJECT_NAME: 'project-name',
 });
 const request = require('request');
@@ -91,7 +91,7 @@ RequestLogger.attachDebug.bind(RequestLogger)(request);
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Request\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Request\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
 */
 ```
 
@@ -100,7 +100,7 @@ RequestLogger.attachDebug.bind(RequestLogger)(request);
 #### Simple Logger
 
 ```javascript
-import { init } from '@somosphi/logger';
+import { init } from '@ismaelalves/logger';
 
 const {
   Logger,
@@ -121,7 +121,7 @@ Logger.info(JSON.stringify({
 
 #### Express Middleware
 ```javascript
-import { init } from '@somosphi/logger';
+import { init } from '@ismaelalves/logger';
 
 const {
   ExpressLogger,
@@ -135,13 +135,13 @@ app.use(ExpressLogger.onError.bind(ExpressLogger));
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":298,"level":30,"msg":"{\"origin\":\"Express\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"}}","time":"2019-09-10T00:49:04.394Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":298,"level":30,"msg":"{\"origin\":\"Express\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"}}","time":"2019-09-10T00:49:04.394Z","v":0}
 */
 ```
 
 #### Axios Interceptor
 ```javascript
-import { init } from '@somosphi/logger';
+import { init } from '@ismaelalves/logger';
 import axios from 'axios';
 
 const {
@@ -156,13 +156,13 @@ AxiosLogger.attachInterceptor.bind(AxiosLogger)(axiosInstance);
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Axios\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Axios\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
 */
 ```
 
 #### Request Debug
 ```javascript
-import { init } from '@somosphi/logger';
+import { init } from '@ismaelalves/logger';
 import request from 'request';
 
 const {
@@ -175,14 +175,14 @@ RequestLogger.attachDebug.bind(RequestLogger)(request);
 
 /*
   This will create the following log:
-{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Request\",\"requrestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
+{"name":"project-name","hostname":"hostname.local","pid":24654,"level":30,"msg":"{\"origin\":\"Request\",\"requestId\":\"77215bf8-f821-4faf-bcc1-2c0260eafc66\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"},\"method\":\"HTTP Method\",\"url\":\"https://somosphi.com\",\"data\":{\"data\":\"all data from axios\"},\"params\":{\"data\":\"params used\"},\"status\":200,\"statusText\":\"OK\"}","time":"2019-09-10T00:53:40.767Z","v":0}
 */
 ```
 
 #### Redact Logger
 
 ```javascript
-import { init } from '@somosphi/logger';
+import { init } from '@ismaelalves/logger';
 
 const {
   RequestLogger,
@@ -204,4 +204,30 @@ Redact.addKey(/code/i);
 RequestLogger.info(Redact.map({
   'code': 'secret',
 }));
+```
+
+#### Change requestId
+```javascript
+import { init } from '@ismaelalves/logger';
+
+const {
+  ExpressLogger,
+} = init({
+  PROJECT_NAME: 'project-name',
+});
+
+/** Request/Response Logger */
+app.use(ExpressLogger.onSuccess.bind(ExpressLogger));
+app.use(ExpressLogger.onError.bind(ExpressLogger));
+
+/** Change requestId */
+app.use((req, res, next)=>{
+  req.headers["requestId"] = "new value";
+  next();
+});
+
+/*
+  This will create the following log:
+{"name":"project-name","hostname":"hostname.local","pid":298,"level":30,"msg":"{\"origin\":\"Express\",\"requestId\":\"new value\",\"type\":\"Request or Response\",\"headers\":{\"data\":\"all headers\"},\"body\":{\"data\":\"all body\"}}","time":"2019-09-10T00:49:04.394Z","v":0}
+*/
 ```
