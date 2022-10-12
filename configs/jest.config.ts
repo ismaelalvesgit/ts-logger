@@ -1,5 +1,4 @@
-import { AnySchema } from '@hapi/joi';
-
+import { AnySchema } from 'joi';
 /**
  * Checks if the object matches the schema
  * @param received Object to be checked
